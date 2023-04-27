@@ -11,10 +11,10 @@ import ClickAwayListener from '@mui/base/ClickAwayListener';
 import SearchStocks from './SearchStocks'
 
 const SelectStocks = () => {
+  const stocksList = ["Q2 FY23", "Q1 FY23", "Q4 FY22", "Q3 FY22", "Q2 FY22", "Q1 FY22"]
   const [toggleStocks, setToggleStocks] = useState(false)
   const [checked, setChecked] = useState([]);
-
-  const stocksList = ["Q2 FY23", "Q1 FY23", "Q4 FY22", "Q3 FY22", "Q2 FY22", "Q1 FY22"]
+  const [filteredStocks, setFilteredStocks] = useState(stocksList)
 
   const toggleStocksDropdown =()=>setToggleStocks(!toggleStocks)  
   const toggleSelectStock = (stock) => {
@@ -28,6 +28,15 @@ const SelectStocks = () => {
     setChecked(newChecked)
   }
   const closeDropdown = () => setToggleStocks(false)
+  const handleFilter = (e) => {
+    const searchValue = e.target.value.toLowerCase()
+    if(searchValue){
+      setFilteredStocks(stocksList.filter((value) => value.toLowerCase().includes(searchValue)))
+    }
+    else{
+      setFilteredStocks(stocksList)
+    }
+  }
 
   return (
     <div className='relative'>
@@ -39,9 +48,9 @@ const SelectStocks = () => {
         (
         <ClickAwayListener onClickAway={() => closeDropdown()}>
           <List className='!absolute z-50 rounded-sm bg-white w-full top-11 shadow-md'>
-            <SearchStocks/>
+            <SearchStocks handleFilter={handleFilter}/>
             <div>
-              {stocksList.map((stock, index) => {
+              {filteredStocks.map((stock, index) => {
               return(
               <ListItem className='h-10' key={index} disablePadding>
                 <ListItemButton role={undefined} onClick={() => toggleSelectStock(stock)} dense>
