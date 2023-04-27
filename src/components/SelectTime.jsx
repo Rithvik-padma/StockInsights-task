@@ -7,6 +7,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 
 const SelectTime = () => {
   const [toggleTime, setToggleTime] = useState(false)
@@ -25,31 +26,37 @@ const SelectTime = () => {
     }
     setChecked(newChecked)
   }
+  const closeDropdown = () => setToggleTime(false)
 
   return (
     <div className='relative'>
       <button className={`w-40 my-2 bg-gray-200 text-gray-600 font-semimedium p-1 pl-0 rounded-md flex flex-row justify-between items-center ${toggleTime && "border border-solid border-gray-400"}`} onClick={toggleTimeDropdown}>
-        <span className='px-3 font-medium'>{checked.length > 0 ? "Time selected" : "Select Time" }</span>
+        <span className='px-3 font-medium'>Select Time</span>
         {toggleTime ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
       </button>
       {toggleTime &&
-        (<List className='!absolute rounded-sm bg-white w-full top-11 shadow-md'>
-          {timeList.map((time, index) => {
-          return(
-          <ListItem key={index} disablePadding>
-            <ListItemButton role={undefined} onClick={() => toggleSelectTime(time)} dense>
-              <ListItemIcon>
-                <Checkbox
-                  edge="start"
-                  checked={checked.indexOf(time) !== -1}
-                  tabIndex={-1}
-                />
-              </ListItemIcon>
-              <ListItemText id={index} primary={time} />
-            </ListItemButton>
-          </ListItem>
-          )})}
-        </List>)
+        (
+          <ClickAwayListener onClickAway={() => closeDropdown()}>
+            <List className='!absolute z-50 rounded-md bg-white w-full top-11 shadow-md'>
+              {timeList.map((time, index) => {
+              return(
+              <ListItem className='h-10' key={index} disablePadding>
+                <ListItemButton role={undefined} onClick={() => toggleSelectTime(time)} dense>
+                  <ListItemIcon>
+                    <Checkbox
+                      edge="start"
+                      checked={checked.indexOf(time) !== -1}
+                      tabIndex={-1}
+                      className='transform scale-90'
+                    />
+                  </ListItemIcon>
+                  <ListItemText id={index} primary={time} />
+                </ListItemButton>
+              </ListItem>
+              )})}
+            </List>
+          </ClickAwayListener>
+        )
       }
     </div>
   )
