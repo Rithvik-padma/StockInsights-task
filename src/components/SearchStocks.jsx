@@ -7,12 +7,15 @@ import CloseIcon from '@mui/icons-material/Close';
 
 const SearchStocks = ({handleFilter}) => {
   const searchStocks = useRef(null)
-  const clearSearch = () => searchStocks.current.value = ""
+  const clearSearch = () => {
+    searchStocks.current.value = ""
+    handleFilter(searchStocks.current.value)
+  }
  
   return (
     <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
       <TextField 
-      onInput={(e) => handleFilter(e)}
+      onInput={(e) => handleFilter(e.target.value)}
       inputRef={searchStocks}
       id='outline-basic' 
       label="Search Stocks" 
