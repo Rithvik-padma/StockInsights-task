@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState, useEffect, useCallback } from 'react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import List from '@mui/material/List';
@@ -10,7 +10,7 @@ import Checkbox from '@mui/material/Checkbox';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import SearchStocks from './SearchStocks'
 
-const SelectStocks = () => {
+const SelectStocks = ({stockFilters, changeStockFilters}) => {
   const stocksList = [
     "RELIANCE INDUSTRIES LTD.",
     "TATA CONSULTANCY SERVICES LTD.",
@@ -34,6 +34,10 @@ const SelectStocks = () => {
   const [toggleStocks, setToggleStocks] = useState(false)
   const [checked, setChecked] = useState([]);
   const [filteredStocks, setFilteredStocks] = useState(stocksList)
+  useEffect(() => changeStockFilters(checked), [checked])
+  useCallback(() => {
+    setChecked(stockFilters);
+  }, [stockFilters]);
 
   const toggleStocksDropdown =()=>setToggleStocks(!toggleStocks)  
   const toggleSelectStock = (stock) => {

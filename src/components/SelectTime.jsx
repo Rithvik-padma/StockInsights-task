@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState, useEffect, useCallback } from 'react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import List from '@mui/material/List';
@@ -9,9 +9,14 @@ import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 
-const SelectTime = () => {
+const SelectTime = ({timeFilters, changeTimeFilters}) => {
   const [toggleTime, setToggleTime] = useState(false)
   const [checked, setChecked] = useState([]);
+  useEffect(() => changeTimeFilters(checked), [checked])
+  useCallback(() => {
+    setChecked(timeFilters);
+    console.log(checked)
+  }, [timeFilters]);
 
   const timeList = ["Q2 FY23", "Q1 FY23", "Q4 FY22", "Q3 FY22", "Q2 FY22", "Q1 FY22"]
 
