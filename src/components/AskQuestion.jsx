@@ -29,7 +29,7 @@ const AskQuestion = () => {
           ref={askQuestion}
           type="text"
           placeholder="Ask a question..." 
-          className='w-full border-2 border-gray-500 rounded-lg p-2 focus:outline-none focus:border-gray-700 pl-10 text-gray-600'
+          className='w-full border-2 border-gray-500 rounded-lg p-2 focus:outline-none focus:border-gray-700 pl-10 pr-8 text-gray-600'
           onInput={(e) => {
             setQuestion(e.target.value)
             handleClose(e.target.value)
