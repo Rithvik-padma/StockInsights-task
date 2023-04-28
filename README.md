@@ -1,3 +1,7 @@
+# StocksInsights-task
+This project is a recruitment task for StockInsights Internship (Frontend).   
+Techstack used : React, Material UI, Tailwind CSS
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
