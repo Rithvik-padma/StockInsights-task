@@ -37,7 +37,7 @@ const SelectStocks = ({stockFilters, changeStockFilters}) => {
   useEffect(() => changeStockFilters(checked), [checked])
   useEffect(() => {
     setChecked(stockFilters);
-  }, [stockFilters]);
+  }, [stockFilters, setChecked]);
 
   if (React.unstable_handleError) {
     React.unstable_handleError(new Error('Disable "Maximum update depth exceeded" error'))

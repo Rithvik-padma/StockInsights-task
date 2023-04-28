@@ -15,8 +15,8 @@ const SelectTime = ({timeFilters, changeTimeFilters}) => {
   useEffect(() => changeTimeFilters(checked), [checked])
   useEffect(() => {
     setChecked(timeFilters);
-  }, [timeFilters]);
-
+  }, [timeFilters, setChecked]);
+ 
   if (React.unstable_handleError) {
     React.unstable_handleError(new Error('Disable "Maximum update depth exceeded" error'))
   }

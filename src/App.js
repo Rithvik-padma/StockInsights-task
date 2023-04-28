@@ -5,6 +5,7 @@ import AskQuestion from './components/AskQuestion';
 import Filters from './components/Filters'
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Button from '@mui/material/Button';
+import Switch from '@mui/material/Switch';
 
 function App() {
 
@@ -53,6 +54,12 @@ function App() {
           clearAllFilters={clearAllFilters}
         />
         <AskQuestion />
+        <div className='flex flex-row justify-end items-center w-full'>
+          <div className='flex flex-row items-center leading-10'>
+            <span>Restrict to keyword search</span>
+            <Switch />
+          </div>
+        </div>
       </div>
     </div>
   );
