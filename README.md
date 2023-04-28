@@ -1,5 +1,5 @@
 # StocksInsights-task
-This project is a recruitment task for StockInsights Internship (Frontend).   
+This project is a [Recruitment task](https://stock-insights-task.vercel.app/) for StockInsights Internship (Frontend).   
 Techstack used : React, Material UI, Tailwind CSS
 
 # Getting Started with Create React App
