@@ -13,10 +13,13 @@ const SelectTime = ({timeFilters, changeTimeFilters}) => {
   const [toggleTime, setToggleTime] = useState(false)
   const [checked, setChecked] = useState([]);
   useEffect(() => changeTimeFilters(checked), [checked])
-  useCallback(() => {
+  useEffect(() => {
     setChecked(timeFilters);
-    console.log(checked)
   }, [timeFilters]);
+
+  if (React.unstable_handleError) {
+    React.unstable_handleError(new Error('Disable "Maximum update depth exceeded" error'))
+  }
 
   const timeList = ["Q2 FY23", "Q1 FY23", "Q4 FY22", "Q3 FY22", "Q2 FY22", "Q1 FY22"]
 
