@@ -1,16 +1,18 @@
-import React, {useRef} from 'react'
+import React, {useRef, useEffect} from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
 import CloseIcon from '@mui/icons-material/Close';
 
-const SearchStocks = ({handleFilter}) => {
+const SearchStocks = ({handleFilter, toggleStocks}) => {
   const searchStocks = useRef(null)
   const clearSearch = () => {
     searchStocks.current.value = ""
     handleFilter(searchStocks.current.value)
   }
+  useEffect(() => clearSearch(), [toggleStocks] )
+
  
   return (
     <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>

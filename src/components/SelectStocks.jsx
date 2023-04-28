@@ -34,6 +34,7 @@ const SelectStocks = ({stockFilters, changeStockFilters}) => {
   const [toggleStocks, setToggleStocks] = useState(false)
   const [checked, setChecked] = useState([]);
   const [filteredStocks, setFilteredStocks] = useState(stocksList)
+
   useEffect(() => changeStockFilters(checked), [checked])
   useEffect(() => {
     setChecked(stockFilters);
@@ -43,7 +44,7 @@ const SelectStocks = ({stockFilters, changeStockFilters}) => {
     React.unstable_handleError(new Error('Disable "Maximum update depth exceeded" error'))
   }
 
-  const toggleStocksDropdown =()=>setToggleStocks(!toggleStocks)  
+  const toggleStocksDropdown = () => setToggleStocks(!toggleStocks)
   const toggleSelectStock = (stock) => {
     let newChecked = [...checked]
     if(checked.indexOf(stock) === -1){
@@ -75,7 +76,7 @@ const SelectStocks = ({stockFilters, changeStockFilters}) => {
         (
         <ClickAwayListener onClickAway={() => closeDropdown()}>
           <List className='!absolute z-50 rounded-sm bg-white w-full top-11 shadow-md'>
-            <SearchStocks handleFilter={handleFilter}/> 
+            <SearchStocks handleFilter={handleFilter} toggleStocks={toggleStocks}/> 
             <div className='scrollbar-container overflow-y-auto max-h-80 scrollbar-thumb-gray-500 scrollbar-track-gray-300'>
               {filteredStocks.map((stock, index) => {
               return(
