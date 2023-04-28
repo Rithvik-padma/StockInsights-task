@@ -21,7 +21,7 @@ const AskQuestion = () => {
 
   return (
     <div className='w-full flex flex-row items-center gap-4'>
-      <div className='w-4/5 flex flex-row items-center relative'>
+      <div className='w-full flex flex-row items-center relative'>
         <SearchIcon
           className='absolute ml-2 text-gray-500'
         />
